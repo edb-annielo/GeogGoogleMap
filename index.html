@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+ Copyright (C) 2012 Education Bureau, HKSAR Government
+
+ Copyright 2010 Google Inc. 
+ Licensed under the Apache License, Version 2.0: 
+ http://www.apache.org/licenses/LICENSE-2.0 
+ -->
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<title>Contour Map and Cross Section by Google Map</title>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<style>
+body {
+  font-family: sans-serif
+}
+
+#map_canvas {
+  margin: 5px 0px 5px 0px;
+}
+</style>
+</head>
+<body>
+<h1>Contour Map and Cross Section by Google Map</h1>
+  <div style="width: 512px; text-align: center">- Add points by clicking on the map<small> or entering an address</small>.<br />
+  - Remove points by right-clicking/double-clicking the markers.</div>
+  <div id="map_canvas" style="border: 1px solid black; width:512px; height:400px"></div>
+  <div style="border:1px solid #cccccc; margin:20px 0; width:512px">
+  <table style="width:512px;">
+  <tr>
+    <td>Address: <input type="text" id="address" size="15" onkeypress="return addressKeyHandler(event)"/></td>
+    <td style="text-align: center">
+      Mode of travel:
+      <select id="mode" onchange="updateElevation()">
+        <option value="direct">Direct</option>
+        <option value="walking">Walking</option>
+        <!--<option value="driving">Driving</option>
+        <option value="bicycling">Bicycling</option>-->
+      </select>
+    </td>
+    <td style="text-align: right">
+      <input type="button" value="Clear points" onclick="reset()"/>
+    </td>
+  </tr>
+  </table>
+  <table style="width:512px; font-size: small;">
+    <tr>
+      <td style="text-align: center"><a href="#" onclick="loadExample(1); return false">Mount Everest</a></td>
+      <td style="text-align: center"><a href="#" onclick="loadExample(2); return false">Challenger Deep</a></td>
+      <td style="text-align: center"><a href="#" onclick="loadExample(3); return false">Death Valley</a></td>
+      <td style="text-align: center"><a href="#" onclick="loadExample(4); return false">Grand Canyon</a></td>
+      <td style="text-align: center"><a href="#" onclick="loadExample(5); return false">Uluru</a></td>
+    </tr>
+  </table>
+  </div>
+  <div id="chart_div" style="width:512px; height:200px" onmouseout="clearMouseMarker()"></div>
+  <div style="margin-top:50px; background:#e6e6e6; font-size:12px">Modified from Google Inc.'s code <a target="_blank" href="https://google-developers.appspot.com/maps/documentation/javascript/examples/elevation-paths">"Elevation Profiles"</a> (Apache License, Version 2.0)</div>
+</body>
+</html>
